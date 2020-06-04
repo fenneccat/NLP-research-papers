@@ -21,7 +21,7 @@ Abstractive text summarization is the task of generating a headline or a short s
   -  DUC Corpus: [DUC website](https://duc.nist.gov/duc2004/tasks.html)
 
 ## Models
-![](https://github.com/fenneccat/NLP-research-papers/Images/Abstractive_Text_Summarization_model.jpg)
+![](https://github.com/fenneccat/NLP-research-papers/blob/master/Images/Abstractive_Text_Summarization_model.jpg)
 ### Encoder-Decoder RNN with Attention and Large Vocabulary Trick
 * Restrict Decoder vocabulary for certain batch to words in the source documents of that batch. + the most frequent words in the
 target dictionary are added until the vocabulary reaches a fixed size
@@ -33,9 +33,9 @@ target dictionary are added until the vocabulary reaches a fixed size
   - They use not only information of word embedding but also use linguistic features such as TF-IDF statistics of words, Named-entity tags, Part-of-speech tags (Check above model image)
 
 ### Modeling Rare/Unseen Words using Switching Generator-Pointer
-![](https://github.com/fenneccat/NLP-research-papers/Images/Abstractive_Text_Summarization_decoder-pointer-architecture.jpg)
+![](https://github.com/fenneccat/NLP-research-papers/blob/master/Images/Abstractive_Text_Summarization_decoder-pointer-architecture.jpg)
 * Since they restric vocabulary (Check **Encoder-Decoder RNN with Attention and Large Vocabulary Trick** section above), Out-of-vocabulary (OOV) Problem is inevitable.
-![swich equation](https://github.com/fenneccat/NLP-research-papers/Images/Abstractive_Text_Summarization_switch-equation.jpg)
+![swich equation](https://github.com/fenneccat/NLP-research-papers/blob/master/Images/Abstractive_Text_Summarization_switch-equation.jpg)
 * They solve this problem by pointer architecture
   - Decoder decide to use whether generator or pointer by turning on or off 'switch' at every time-step
   - `Generator` generates words in normal fashion, and `Pointer` select one of word-positions in the source.
@@ -45,29 +45,29 @@ target dictionary are added until the vocabulary reaches a fixed size
     - $$c_i$$: Attention-weighted context vector
     - W,v,b are parameters to train
   - When the switch is off (have to use pointer), they select word position with below equation
-  ![pointer equation](https://github.com/fenneccat/NLP-research-papers/Images/Abstractive_Text_Summarization_pointer-attention.jpg)
+  ![pointer equation](https://github.com/fenneccat/NLP-research-papers/blob/master/Images/Abstractive_Text_Summarization_pointer-attention.jpg)
     - It looks similar to `switch` equation, but carefully see superscript of W,v,b. They are different parameters from `switch`.
     - By looking at the previous hidden state, embedding of previous step, and *hidden state of encoding hidden state*, they select right position of word to replace OOV
       - If $$P_{i}^{a}(j)$$ is max in j-th position in source document, they select this word to put into next decoder step.
 * loss function
-![](https://github.com/fenneccat/NLP-research-papers/Images/Abstractive_Text_Summarization_loss-function.jpg)
+![](https://github.com/fenneccat/NLP-research-papers/blob/master/Images/Abstractive_Text_Summarization_loss-function.jpg)
 $$g_{i}$$ is working as compulsory switch for training time. When OOV happens in training time, $$g_{i}$$ is set to zero, so it can learn parameters for pointer architecture
 
 
 ### Capturing Hierarchical Document Structure with Hierarchical Attention
 * It is also important to identify the key sentences from which the summary can be drawn.
 
-![](https://github.com/fenneccat/NLP-research-papers/Images/Abstractive_Text_Summarization_attention-for-key-sentence.jpg)
+![](https://github.com/fenneccat/NLP-research-papers/blob/master/Images/Abstractive_Text_Summarization_attention-for-key-sentence.jpg)
 They use two bidirectional attention weight to determine important sentence.
 $$P_{w}^{a}(j)$$ is for word-level attention, $$P_{s}^{a}(j)$$ is for sentence-level attention.
 They try to find best position (j) among source document by weighting both word itself and sentence which contains that word.
-![](https://github.com/fenneccat/NLP-research-papers/Images/Abstractive_Text_Summarization_word-sentence-weighting.jpg)
+![](https://github.com/fenneccat/NLP-research-papers/blob/master/Images/Abstractive_Text_Summarization_word-sentence-weighting.jpg)
 
 ## Results
-![](https://github.com/fenneccat/NLP-research-papers/Images/Abstractive_Text_Summarization_performance-table.jpg)
+![](https://github.com/fenneccat/NLP-research-papers/blob/master/Images/Abstractive_Text_Summarization_performance-table.jpg)
 
 ### Qualitative Result
-![](https://github.com/fenneccat/NLP-research-papers/Images/Abstractive_Text_Summarization_qualitative-analysis.jpg)
+![](https://github.com/fenneccat/NLP-research-papers/blob/master/Images/Abstractive_Text_Summarization_qualitative-analysis.jpg)
 
 
 ## Conclusion & My Thought
