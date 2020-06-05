@@ -1,6 +1,6 @@
-Authors: Nallapati, Ramesh, et al. (IBM Watson)
-Year: 2016
-Conference or Journal: CoNLL
+Authors: Nallapati, Ramesh, et al. (IBM Watson)\
+Year: 2016\
+Conference or Journal: CoNLL\
 Paper: [Abstractive Text Summarization using Sequence-to-sequence RNNs and Beyond](https://www.aclweb.org/anthology/K16-1028.pdf)
 
 ## Abstact
