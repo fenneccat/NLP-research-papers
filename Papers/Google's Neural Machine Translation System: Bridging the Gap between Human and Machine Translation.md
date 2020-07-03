@@ -19,10 +19,12 @@ Paper: [Google’s Neural Machine Translation System: Bridging the Gap between H
       - Their beam search technique employs a length-normalization procedure and uses a coverage penalty => over all words in source sentence.
 ## Introduction
 New architecture is suggested (two RNNs) but it has three weaknesses compared to traditional phrase-based translation systems.
+#### problem
   1. slower training & inference speed 
   2. ineffectiveness in dealing with rare words
   3. failure to translate all words
 
+#### solution
 1. They use LSTM RNNs with 8 layers with residual connections between layers
 For parallelism, they connect attention to bottom layer of decoder and top layer of encoder
 2. * Use sub-word units for inputs and outputs
